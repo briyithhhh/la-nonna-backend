@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: la_nonna_production
-  username: la_nonna
+  username: postgres
   password: <%= ENV["LA_NONNA_DATABASE_PASSWORD"] %>

@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.routes.default_url_options[:host] = "localhost:3000"
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -16,6 +18,9 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+
+  # Store uploaded files on the local file system in a temporary directory.
+  # config.active_storage.service = :cloudinary
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

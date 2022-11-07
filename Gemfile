@@ -13,7 +13,10 @@ gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+gem "jbuilder"
+
+# Rails Admin to provides an easy-to-user interface to managing data
+gem 'rails_admin'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -21,11 +24,20 @@ gem "redis", "~> 4.0"
 # To add JWT Auth
 gem "jwt"
 
+# Use figaro to manage environment variables
+gem "figaro"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
+gem 'bcrypt'#, '~> 3.1.7'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
+
+gem "annotate"
+
+# Sentry to report bugs
+gem "sentry-ruby"
+gem "sentry-rails"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -40,17 +52,26 @@ gem "image_processing", "~> 1.2"
 gem "rack-cors"
 
 # Rolify to add roles
-
 gem "rolify"
+
+# Use to support SASS in Rails Application
+gem "sassc-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # Use to seed database with fake data
+  gem "faker", "~> 2.23"
 end
 
 group :development do
+  # Use to generate Entity - Relation Diagram
+  gem "rails-erd"
+
+  # Use to generate UML Diagram for each model 
+  gem 'railroady'
+  
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
-gem "faker", "~> 2.23"

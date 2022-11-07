@@ -10,15 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_165016) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_040403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "facturas", force: :cascade do |t|
-    t.string "tipo"
-    t.float "price"
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "card_number"
+    t.string "cvc"
+    t.string "exp_month"
+    t.string "exp_year"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "carts_platillos", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "platillo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_carts_platillos_on_cart_id"
+    t.index ["platillo_id"], name: "index_carts_platillos_on_platillo_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "name"
+    t.string "lastname"
+    t.string "email"
+    t.string "phone"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "facturas", force: :cascade do |t|
+    t.float "price"
+    t.string "tipo"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_facturas_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -77,15 +144,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_165016) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_has_facturas", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "factura_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["factura_id"], name: "index_users_has_facturas_on_factura_id"
-    t.index ["user_id"], name: "index_users_has_facturas_on_user_id"
-  end
-
   create_table "users_roles", id: false, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "role_id"
@@ -94,10 +152,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_165016) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "users"
+  add_foreign_key "carts", "users"
+  add_foreign_key "carts_platillos", "carts"
+  add_foreign_key "carts_platillos", "platillos"
+  add_foreign_key "facturas", "users"
   add_foreign_key "platillos_has_facturas", "facturas"
   add_foreign_key "platillos_has_facturas", "platillos"
   add_foreign_key "platillos_has_ingredients", "ingredients"
   add_foreign_key "platillos_has_ingredients", "platillos"
-  add_foreign_key "users_has_facturas", "facturas"
-  add_foreign_key "users_has_facturas", "users"
 end

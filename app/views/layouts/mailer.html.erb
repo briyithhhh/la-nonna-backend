@@ -3,11 +3,42 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      body: {
+        background-color: #f5f8fa;
+      }
     </style>
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+      crossorigin="anonymous"
+    >
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <h1 class="text-md-start">
+        Tienes un nuevo comentario
+      </h1>
+      <div class="card mt-4" style="width: 80%">
+        <div class="card-body">
+          <div class="card-title">
+            Comentario de: <%= @comment.name %> <%= @comment.lastname %> 
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <h6 class="card-subtitle mb-2 me-2 text-muted">
+                <%= @comment.phone %>
+              </h6>
+            </div>
+            <div class="col-6">
+              <h6 class="card subtitle mb-2 ms-2 text-muted">
+                <%= @comment.email%>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

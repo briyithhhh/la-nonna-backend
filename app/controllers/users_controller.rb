@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+#  user.avatar.attach(user_params[:avatar])
   before_action :authorize_request, except: :create
   before_action :find_user, except: %i[create index]
 
