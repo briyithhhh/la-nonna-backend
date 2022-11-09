@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    @comment = Comment.find(params[:id])
+    render json: @comment
   end
 
   # POST /comments
@@ -39,6 +41,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
+    render json: { message: 'Comment deleted successfully' }
   end
 
   private
