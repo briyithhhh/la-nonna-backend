@@ -76,4 +76,8 @@ group :development do
   # gem "spring"
 end
 
-gem "pundit", "~> 2.2"
+gem "cancancan", "~> 3.4"
+
+gem 'rails-healthcheck'
+
+gem 'jsonapi-serializer'

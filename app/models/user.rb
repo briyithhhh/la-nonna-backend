@@ -25,6 +25,10 @@ class User < ApplicationRecord
 #    end
 #  end
 
+  def avatar_url
+    Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
+  end
+
   def has_card?
     if self.cards.count > 0
       return true

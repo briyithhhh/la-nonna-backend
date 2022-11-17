@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-#  user.avatar.attach(user_params[:avatar])
-  before_action :authorize_request, except: :create
+  # user.avatar.attach(user_params[:avatar])
+  # before_action :authorize_request, except: :create
   before_action :find_user, except: %i[create index]
 
   # GET /users
   def index
-    @users = User.all
-    render json: @users, status: :ok
+    @users = User.includes(cards: [:user], cart: [:user], facturas: [:user], avatar_blob: [:user])
+    render json: @users, include: [:avatar_blob, :cards, :facturas, :cart], status: :ok
   end
 
-  # GET /users/{username}
+  # GET /users/{cedula}
   def show
-    render json: @user, status: :ok
+    render json: @user, include: [:avatar_blob, :cards, :cart, :facturas], status: :ok
   end
 
   # POST /users
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/{username}
+  # PUT /users/{cedula}
   def update
     unless @user.update(user_params)
       render json: { errors: @user.errors.full_messages },
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/{username}
+  # DELETE /users/{cedula}
   def destroy
     @user.destroy
   end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(
-     :name, :email, :cedula, :password, :password_confirmation, :location
+      :avatar, :name, :email, :cedula, :password, :password_confirmation, :location
     )
   end
 end

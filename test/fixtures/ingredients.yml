@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  type: 
   quantity: 1
   serial: MyString
+  unit_price: 1.5
+  family: one
 
 two:
   name: MyString
-  type: 
   quantity: 1
   serial: MyString
+  unit_price: 1.5
+  family: two

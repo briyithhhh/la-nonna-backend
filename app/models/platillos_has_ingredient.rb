@@ -1,4 +1,4 @@
 class PlatillosHasIngredient < ApplicationRecord
-  belongs_to :ingredient
   belongs_to :platillo
+  belongs_to :ingredient
 end

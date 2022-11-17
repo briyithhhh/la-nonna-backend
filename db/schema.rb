@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_08_021915) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,13 +103,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_021915) do
     t.index ["user_id"], name: "index_facturas_on_user_id"
   end
 
-  create_table "ingredients", force: :cascade do |t|
-    t.string "name"
-    t.string "type"
-    t.integer "quantity"
-    t.string "serial"
+  create_table "families", force: :cascade do |t|
+    t.string "family"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.integer "quantity"
+    t.string "serial"
+    t.float "unit_price"
+    t.bigint "family_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_id"], name: "index_ingredients_on_family_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -125,7 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_021915) do
   create_table "platillos", force: :cascade do |t|
     t.string "name"
     t.float "price"
-    t.string "type"
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -140,8 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_021915) do
   end
 
   create_table "platillos_has_ingredients", force: :cascade do |t|
-    t.bigint "ingredient_id", null: false
     t.bigint "platillo_id", null: false
+    t.bigint "ingredient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_platillos_has_ingredients_on_ingredient_id"
@@ -186,6 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_021915) do
   add_foreign_key "chatroom_users", "chatrooms"
   add_foreign_key "chatroom_users", "users"
   add_foreign_key "facturas", "users"
+  add_foreign_key "ingredients", "families"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "platillos_has_facturas", "facturas"
