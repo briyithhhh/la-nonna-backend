@@ -145,6 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
   create_table "platillos_has_facturas", force: :cascade do |t|
     t.bigint "platillo_id", null: false
     t.bigint "factura_id", null: false
+    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["factura_id"], name: "index_platillos_has_facturas_on_factura_id"

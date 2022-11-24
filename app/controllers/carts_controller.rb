@@ -28,6 +28,6 @@ class CartsController < ApplicationController
   private
 
   def carts_params
-    params.permit(:user_id, :product_id, :quantity)
+    params.permit(:user_id, :product_id, :quantity, :platillo_id, :factura_id)
   end
 end

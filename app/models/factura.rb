@@ -43,6 +43,7 @@ class Factura < ApplicationRecord
   def update_price()
     self.update(price: self.total)
     self.update(total: self.total_iva)
+    self.update(tipo: "Fiscal")
   end
 
   def add_platillos(platillo_id, factura_id)
@@ -55,6 +56,15 @@ class Factura < ApplicationRecord
     update_price()
   end
 
-  after_save :update_price
-
+  rails_admin do
+    list do
+      field :id
+      field :user
+      field :platillos
+      field :price
+      field :iva
+      field :total
+      field :tipo
+    end
+  end
 end

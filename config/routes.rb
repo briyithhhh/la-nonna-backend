@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, param: :_id
   resources :carts, only: %i[index update delete]
   resources :platillos, except: %i[delete]
+  resources :facturas, except: %i[delete]
 
 #  get '/*a', to: 'application#not_found'
 

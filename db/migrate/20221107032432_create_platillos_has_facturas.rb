@@ -3,6 +3,7 @@ class CreatePlatillosHasFacturas < ActiveRecord::Migration[7.0]
     create_table :platillos_has_facturas do |t|
       t.references :platillo, null: false, foreign_key: true
       t.references :factura, null: false, foreign_key: true
+      t.integer :quantity
 
       t.timestamps
     end
