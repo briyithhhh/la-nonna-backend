@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :users, param: :_id
   resources :carts, only: %i[index update delete]
+  resources :platillos, except: %i[delete]
 
 #  get '/*a', to: 'application#not_found'
 

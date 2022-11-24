@@ -5,7 +5,7 @@ class PlatillosController < ApplicationController
   # GET /platillos
   def index
     @platillos = Platillo.all
-    render json: @platillos, status: :ok
+    render json: @platillos, include: [:ingredients], status: :ok
   end
 
   # GET /platillos/{id}
