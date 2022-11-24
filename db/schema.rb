@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
   create_table "carts_platillos", force: :cascade do |t|
     t.bigint "cart_id", null: false
     t.bigint "platillo_id", null: false
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_carts_platillos_on_cart_id"
@@ -96,7 +97,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
 
   create_table "facturas", force: :cascade do |t|
     t.float "price"
+    t.float "total"
     t.string "tipo"
+    t.float "iva", default: 1.16
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,6 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
   end
 
   create_table "platillos", force: :cascade do |t|
+    t.string "image_url"
     t.string "name"
     t.float "price"
     t.string "category"
@@ -173,6 +177,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_003347) do
     t.string "email"
     t.string "password_digest"
     t.string "location"
+    t.string "area_code", default: "58"
+    t.string "phone"
+    t.string "reset_psw"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

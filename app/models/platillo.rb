@@ -13,4 +13,24 @@ class Platillo < ApplicationRecord
   def image_url
     Rails.application.routes.url_helpers.url_for(image) if image.attached?
   end
+
+  def add_ingredient(ingredient_id)
+    PlatillosHasIngredient.create(platillo_id: self.id, ingredient_id: ingredient_id)  
+  end
+
+  def remove_ingredient(ingredient_id)
+    PlatillosHasIngredient.where(platillo_id: self.id, ingredient_id: ingredient_id).destroy
+  end
+
+  def has_ingredients?()
+    return !PlatillosHasIngredient.find_by(platillo_id: self.id).nil?
+  end
+
+  def has_ingredients()
+    if self.has_ingredients? == false
+      return "No tiene ingredientes"
+    else 
+      return PlatillosHasIngredient.find_by(platillo_id: self.id)
+    end
+  end
 end

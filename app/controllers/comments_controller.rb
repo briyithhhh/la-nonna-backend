@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    CommentMailer.notify_admin(@comment).deliver_now
 
     if @comment.save
       render :show, status: :created, location: @comment

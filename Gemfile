@@ -71,6 +71,8 @@ group :development do
 
   # Use to generate UML Diagram for each model 
   gem 'railroady'
+
+  gem 'letter_opener'
   
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
@@ -81,3 +83,6 @@ gem "cancancan", "~> 3.4"
 gem 'rails-healthcheck'
 
 gem 'jsonapi-serializer'
+gem "graphiti", "~> 1.3"
+
+gem "twilio-ruby", "~> 5.73"

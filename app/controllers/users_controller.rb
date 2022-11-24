@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      Cart.create(user_id: @user.id)
+      SendMessages.new.send_welcome_message
       render json: @user, status: :created
     else
       render json: { errors: @user.errors.full_messages },
@@ -48,7 +50,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(
-      :avatar, :name, :email, :cedula, :password, :password_confirmation, :location
+      :avatar, :name, :email, :cedula, :password, :password_confirmation, :location, :phone
     )
   end
 end

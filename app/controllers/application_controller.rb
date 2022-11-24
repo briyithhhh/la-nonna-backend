@@ -1,17 +1,13 @@
 class ApplicationController < ActionController::API
   include CanCan::ControllerAdditions
 
-  rescue_from CanCan::AccessDenied do |exception|
-    render json: { error: exception.message }, status: :unauthorized
-  end
-
   def not_found
     render json: { message: 'Not Found' }
   end
 
   def welcome 
     render json: {
-      message: "La Nonna - Administrative System - Version: 2.3.2"
+      message: "La Nonna - Administrative System - Version: 2.3.5"
     }
   end
   
@@ -30,4 +26,13 @@ class ApplicationController < ActionController::API
       render json: { errors: e.message }, status: :unauthorized
     end
   end
+
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   respond_to do |format|
+  #     format.jsonapi { render jsonapi: { meta: { error: exception.message } }, status: :forbidden }
+  #     format.json { head :forbidden, content_type: 'text/html' }
+  #     format.html { redirect_to main_app.root_url, notice: exception.message }
+  #     format.js   { head :forbidden, content_type: 'text/html' }
+  #   end
+  # end
 end

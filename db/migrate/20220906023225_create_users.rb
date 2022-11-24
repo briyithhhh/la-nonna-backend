@@ -7,6 +7,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password_digest
       t.string :location
+      t.string :area_code, default: "58"
+      t.string :phone
+      t.string :reset_psw
 
       t.timestamps
     end

@@ -17,44 +17,44 @@ Role.create(name: 'client', resource_type: 'User', resource_id: 3) if Role.where
 
 puts("Adding Profile of Users 🥹")
 
-User.create(name: 'Javier', lastname: 'Diaz', cedula: '29543140', email: 'javierdiazt406@gmail.com', password:'277353', password_confirmation: '277353', location: 'Circunvalacion 2, Amparo, Maracaibo, Zulia.')
+User.create(name: 'Javier', lastname: 'Diaz', cedula: '29543140', email: 'javierdiazt406@gmail.com', password:'277353', password_confirmation: '277353', location: 'Circunvalacion 2, Amparo, Maracaibo, Zulia.', phone: "4121688466")
 User.find(1).add_role(:admin)
 
 Card.create(card_number: "4002-1034-1294-3302", cvc: "343", exp_month: "12", exp_year: "23", user_id: 1)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 1)
 Cart.create(user_id: 1)
 
-User.create(name: 'Evanan', lastname: 'Semprun', cedula: '28488961', email: 'evanansemprun@gmail.com', password:'123456', password_confirmation: '123456', location: 'Fuerzas Armadas, Maracaibo, Zulia.')
-User.find(2).add_role(:employeer)
+User.create(name: 'Briyith', lastname: 'Portillo', cedula: '30355033', email:'briyithportillo@gmail.com', password:'123456', password_confirmation: '123456', location: 'Barrio Sur America, San Francisco, Zulia', phone: "4146961248")
+User.find(2).add_role(:admin)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 2)
 Cart.create(user_id: 2)
 
 20.times do |i|
-  User.create(name: Faker::Name.name, lastname: Faker::Name.last_name, cedula: Faker::Number.number(digits: 8), email: Faker::Internet.email, password:'123456', password_confirmation: '123456', location: Faker::Address.full_address)
-  User.find(3+i).add_role(:client)
+  User.create(name: Faker::Name.name, lastname: Faker::Name.last_name, cedula: Faker::Number.number(digits: 8), email: Faker::Internet.email, password:'123456', password_confirmation: '123456', location: Faker::Address.full_address, phone: Faker::Base.numerify('412#######'))
+  # User.find(3+i).add_role(:client)
   Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 3+i)
   Cart.create(user_id: 3+i)
 end
 
-User.create(name: 'Briyith', lastname: 'Portillo', cedula: '30355033', email:'briyithportillo@gmail.com', password:'123456', password_confirmation: '123456', location: 'Barrio Sur America, San Francisco, Zulia')
-User.find(23).add_role(:admin)
+User.create(name: 'Evanan', lastname: 'Semprun', cedula: '28488961', email: 'evanansemprun@gmail.com', password:'123456', password_confirmation: '123456', location: 'Fuerzas Armadas, Maracaibo, Zulia.', phone: "4146317864")
+User.find(23).add_role(:employeer)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 23)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 23)
 Cart.create(user_id: 23)
 
-User.create(name: 'Edmundo', lastname: 'Arias', cedula: '28938720', email: 'edmundomiguelarias@gmail.com', password:'123456', password_confirmation: '123456', location: 'Torre Epifania, Maracaibo, Zulia.')
+User.create(name: 'Edmundo', lastname: 'Arias', cedula: '28938720', email: 'edmundomiguelarias@gmail.com', password:'123456', password_confirmation: '123456', location: 'Torre Epifania, Maracaibo, Zulia.', phone: Faker::Base.numerify('4246630017'))
 User.find(24).add_role(:admin)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 24)
 Cart.create(user_id: 24)
 
 5.times do |i|
-  User.create(name: Faker::Name.name, lastname: Faker::Name.last_name, cedula: Faker::Number.number(digits: 8), email: Faker::Internet.email, password:'123456', password_confirmation: '123456', location: Faker::Address.full_address)
-  User.find(25+i).add_role(:client)
+  User.create(name: Faker::Name.name, lastname: Faker::Name.last_name, cedula: Faker::Number.number(digits: 8), email: Faker::Internet.email, password:'123456', password_confirmation: '123456', location: Faker::Address.full_address, phone: Faker::Base.numerify('412#######'))
+  # User.find(25+i).add_role(:client)
   Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 25+i)
   Cart.create(user_id: 25+i)
 end
 
-User.create(name: 'Samantha', lastname: 'Linares', cedula: '29788342', email: 'samilila112@gmail.com', password:'123456', password_confirmation: '123456', location: 'La Victoria, Maracaibo, Zulia.')
+User.create(name: 'Samantha', lastname: 'Linares', cedula: '29788342', email: 'samilila112@gmail.com', password:'123456', password_confirmation: '123456', location: 'La Victoria, Maracaibo, Zulia.', phone: "4127500573")
 User.find(30).add_role(:admin)
 Card.create(card_number: rand(3000..6999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s, cvc: rand(100..999).to_s, exp_month: rand(10..12).to_s, exp_year: rand(23..26).to_s, user_id: 30)
 Cart.create(user_id: 30)
@@ -155,6 +155,8 @@ Ingredient.create(name: "Leche de cabra", quantity: rand(150..400), serial: Secu
 Ingredient.create(name: "Leche de oveja", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 3, family_id: 5)
 Ingredient.create(name: "Leche de alpaca", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 5, family_id: 5)
 Ingredient.create(name: "Leche de burra", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 99, family_id: 5)
+Ingredient.create(name: "Leche del Edmundito", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 99, family_id: 5)
+Ingredient.create(name: "Leche del Banano", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 99, family_id: 5)
 Ingredient.create(name: "Leche de deslactosada", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 2, family_id: 5)
 Ingredient.create(name: "Leche de soya", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 2, family_id: 5)
 Ingredient.create(name: "Leche de almendra", quantity: rand(150..400), serial: SecureRandom.uuid, unit_price: 2, family_id: 5)
@@ -284,24 +286,24 @@ Platillo.create(name: 'Pasta con Albondigas', price: 9, category: 'Pastas')
 Platillo.create(name: 'Lasagna', price: 6, category: 'Pastas')
 Platillo.create(name: 'Spaguetti', price: 7.50, category: 'Pastas')
 
-puts("Joining dishes with ingredients 🫶🏻")
+puts("Joining dishes with ingredients🫶🏻")
 
 # PlatillosHasIngredient.create(platillo_id: 1, ingredient_id: 1)
 
 puts("Adding bills 📝")
 
 30.times do |i|
-  Factura.create(price: rand(20.0..200.0).round(2), tipo: 'Fiscal', user_id: i+1)
+  Factura.create(tipo: 'Fiscal', user_id: i+1)
   PlatillosHasFactura.create(platillo_id: rand(1..14), factura_id: i+1)
 end
 
 30.times do |i|
-  Factura.create(price: rand(20.0..200.0).round(2), tipo: 'Fiscal', user_id: i+1)
+  Factura.create(tipo: 'Fiscal', user_id: i+1)
   PlatillosHasFactura.create(platillo_id: rand(1..14), factura_id: i+31)
 end
 
 30.times do |i|
-  Factura.create(price: rand(20.0..200.0).round(2), tipo: 'Fiscal', user_id: i+1)
+  Factura.create(tipo: 'Fiscal', user_id: i+1)
   PlatillosHasFactura.create(platillo_id: rand(1..14), factura_id: i+61)
 end
 
